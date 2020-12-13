@@ -4,18 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/orange_bg">
+    android:background="@drawable/call_receive_bg">
 
     <EditText
         android:id="@+id/etTianMaoSearch"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/tian_mao_search_bg"
+        android:focusable="false"
         android:hint="输入你想要的商品"
+        android:inputType="textMultiLine"
         android:paddingStart="20dp"
+        android:paddingEnd="50dp"
         android:textColor="#9c000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

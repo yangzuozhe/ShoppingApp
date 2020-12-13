@@ -8,14 +8,21 @@
 
     <EditText
         android:id="@+id/etTianMaoSearch"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/tian_mao_search_bg"
+        android:focusableInTouchMode="true"
         android:hint="输入你想要的商品"
+        android:imeOptions="actionGo"
+        android:maxLines="1"
         android:paddingStart="20dp"
+        android:paddingEnd="50dp"
+        android:singleLine="true"
         android:textColor="#9c000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -33,7 +40,7 @@
     <FrameLayout
         android:id="@+id/flProductionView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTianMaoSearch" />
 
