@@ -1,29 +1,22 @@
 package com.example.shoppingapp.activity;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.PersistableBundle;
-import android.view.inputmethod.InputMethodManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
+import com.example.shoppingapp.base.StringUtils;
+import com.example.shoppingapp.fragment.TianMaoProductInfoFragment;
 import com.example.shoppingapp.fragment.TianMaoSearchGliderFragment;
-
-import java.sql.Time;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TianMaoProductInfoActivity extends BaseActivity {
     @BindView(R.id.etTianMaoSearch)
@@ -37,7 +30,7 @@ public class TianMaoProductInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tian_mao_prduct_info);
+        setContentView(R.layout.tian_mao_prduct_info_activity);
         initViews();
         //
         showSoftInputFromWindow(mEtTianMaoSearch);
@@ -48,6 +41,14 @@ public class TianMaoProductInfoActivity extends BaseActivity {
         replaceFragment(new TianMaoSearchGliderFragment(), R.id.flProductionView, false);
     }
 
+    @OnClick(R.id.btnTianMaoSearch)
+    public void onClick(View view) {
+        if (view.getId() == R.id.btnTianMaoSearch) {
+            if (!StringUtils.isEmploy(mEtTianMaoSearch.getText().toString())) {
+                replaceFragment(TianMaoProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, true);
+            }
+        }
+    }
 
 
 }
