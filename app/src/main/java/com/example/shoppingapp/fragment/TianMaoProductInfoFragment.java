@@ -1,6 +1,5 @@
 package com.example.shoppingapp.fragment;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,11 +15,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.shoppingapp.Data.WhatMaiData;
 import com.example.shoppingapp.OkHttpUtils;
 import com.example.shoppingapp.R;
-import com.example.shoppingapp.TianmaoData;
+import com.example.shoppingapp.Data.TianmaoData;
 import com.example.shoppingapp.base.BaseFragment;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
+import com.example.shoppingapp.bean.WhatMaiProductBean;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,10 +35,6 @@ import okhttp3.Response;
 public class TianMaoProductInfoFragment extends BaseFragment {
     @BindView(R.id.rvProductInfo)
     RecyclerView mRvProduceInfo;
-    /**
-     * 搜索得到的数据
-     */
-    private ArrayList<TianmaoSearchBean> mSearchBeanArrayList;
     //    static TianMaoProductInfoFragment fragment;
     public static final String INFO_KEY = "INFO_KEY";
 
@@ -63,13 +60,13 @@ public class TianMaoProductInfoFragment extends BaseFragment {
         return view;
     }
 
-    public void initRecyclerView() {
+    public void initRecyclerView(ArrayList<TianmaoSearchBean> searchBeanArrayList) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
                 mRvProduceInfo.setLayoutManager(manager);
-                final ProductInfoAdapter adapter = new ProductInfoAdapter(getContext(),mSearchBeanArrayList);
+                final ProductInfoAdapter adapter = new ProductInfoAdapter(getContext(),searchBeanArrayList);
                 mRvProduceInfo.setAdapter(adapter);
             }
         });
@@ -95,8 +92,8 @@ public class TianMaoProductInfoFragment extends BaseFragment {
                 final String html;
                 if (response.body() != null) {
                     html = response.body().string();
-                    mSearchBeanArrayList = TianmaoData.TianmaoSearch(html);
-                    initRecyclerView();
+                    ArrayList<TianmaoSearchBean> mSearchBeanArrayList = TianmaoData.TianmaoSearch(html);
+                    initRecyclerView(mSearchBeanArrayList);
                 }
 
 

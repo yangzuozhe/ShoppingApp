@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppingapp.OkHttpUtils;
 import com.example.shoppingapp.R;
-import com.example.shoppingapp.TianmaoData;
+import com.example.shoppingapp.Data.TianmaoData;
 import com.example.shoppingapp.activity.TianMaoProductInfoActivity;
 import com.example.shoppingapp.adapter.TianMaoAdapter;
 import com.example.shoppingapp.base.BaseFragment;
@@ -55,6 +55,14 @@ public class TianMaoFragment extends BaseFragment {
 
     View fragmentView;
 
+    public static TianMaoFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        TianMaoFragment fragment = new TianMaoFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override

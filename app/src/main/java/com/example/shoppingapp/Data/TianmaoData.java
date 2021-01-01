@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.shoppingapp.Data;
 
 import android.util.Log;
 
@@ -7,7 +7,6 @@ import com.example.shoppingapp.bean.TianmaoBannerBean;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
 
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +25,7 @@ public class TianmaoData {
         System.out.println(a);
     }
 
-    public static void demo(String html){
+    public static void demo(String html) {
         ArrayList<TianmaoSearchBean> arrayList = new ArrayList<>();
         Document document = Jsoup.parse(html);
         Elements elements = document.select("div[class=view  ]")
@@ -42,7 +41,7 @@ public class TianmaoData {
                     .select("b")
                     .select("img")
                     .attr("src");
-            Log.d("Demo",imageUrl);
+            Log.d("Demo", imageUrl);
         }
     }
 

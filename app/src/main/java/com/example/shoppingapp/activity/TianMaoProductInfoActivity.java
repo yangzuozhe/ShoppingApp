@@ -1,20 +1,18 @@
 package com.example.shoppingapp.activity;
 
-import androidx.annotation.Nullable;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.Nullable;
+
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
 import com.example.shoppingapp.base.StringUtils;
-import com.example.shoppingapp.fragment.TianMaoProductInfoFragment;
 import com.example.shoppingapp.fragment.TianMaoSearchGliderFragment;
+import com.example.shoppingapp.fragment.WhatMaiProductInfoFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +44,8 @@ public class TianMaoProductInfoActivity extends BaseActivity {
     public void onClick(View view) {
         if (view.getId() == R.id.btnTianMaoSearch) {
             if (!StringUtils.isEmploy(mEtTianMaoSearch.getText().toString())) {
-                replaceFragment(TianMaoProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, false);
+//                replaceFragment(TianMaoProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, false);
+                replaceFragment(WhatMaiProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, false);
             }
         }
     }

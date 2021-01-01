@@ -2,42 +2,59 @@ package com.example.shoppingapp.activity;
 
 import android.os.Bundle;
 
-import com.example.shoppingapp.OkHttpUtils;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.shoppingapp.R;
-import com.example.shoppingapp.TianmaoData;
 import com.example.shoppingapp.base.BaseActivity;
+import com.example.shoppingapp.fragment.TianMaoFragment;
+import com.example.shoppingapp.fragment.WhatMaiFragment;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity {
+    @BindView(R.id.vpHome)
+    ViewPager mVpHome;
+    ArrayList<Fragment> mFragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String s = "https://list.tmall.com/search_product.htm?q=%D0%AC%D7%D3&type=p&vmarket=&spm=875.7931836%2FB.a2227oh.d100&from=mallfp..pc_1_searchbutton";
-        OkHttpUtils.requestData(s, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                TianmaoData.demo(response.body().string());
-            }
-        });
-
+        ButterKnife.bind(this);
+        mFragmentList.add(TianMaoFragment.newInstance());
+        mFragmentList.add(WhatMaiFragment.newInstance());
+        HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
+        mVpHome.setAdapter(adapter);
     }
 
 
+    class HomeViewPagerAdapter extends FragmentPagerAdapter {
+        ArrayList<Fragment> mFgList;
 
 
+        public HomeViewPagerAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragmentList) {
+            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            mFgList = fragmentList;
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return mFgList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFgList.size();
+        }
+    }
 
 
 }

@@ -5,11 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
-    <fragment
-        android:id="@+id/fgTmFragment"
-        android:name="com.example.shoppingapp.fragment.TianMaoFragment"
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+
+<!--    <fragment-->
+<!--        android:id="@+id/fgTmFragment"-->
+<!--        android:name="com.example.shoppingapp.fragment.TianMaoFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fgZmFragment"-->
+<!--        android:name="com.example.shoppingapp.fragment.WhatMaiFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
