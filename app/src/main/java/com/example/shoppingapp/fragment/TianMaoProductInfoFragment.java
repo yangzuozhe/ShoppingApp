@@ -3,6 +3,7 @@ package com.example.shoppingapp.fragment;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,6 +148,12 @@ public class TianMaoProductInfoFragment extends BaseFragment {
             holder.tvSellNumber.setText(bean.getStatus());
             holder.tvStoryName.setText(bean.getShopName());
             Glide.with(mContext).load(bean.getImageUrl()).into(holder.ivInfoBg);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Demo",bean.getImageUrl());
+                }
+            });
         }
 
         @Override

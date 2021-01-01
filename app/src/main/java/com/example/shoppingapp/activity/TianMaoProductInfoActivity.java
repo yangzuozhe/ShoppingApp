@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
 import com.example.shoppingapp.base.StringUtils;
@@ -25,7 +27,6 @@ public class TianMaoProductInfoActivity extends BaseActivity {
     Button mBtnTianMaoSearch;
     @BindView(R.id.flProductionView)
     FrameLayout mFlProductionView;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class TianMaoProductInfoActivity extends BaseActivity {
     public void onClick(View view) {
         if (view.getId() == R.id.btnTianMaoSearch) {
             if (!StringUtils.isEmploy(mEtTianMaoSearch.getText().toString())) {
-                replaceFragment(TianMaoProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, true);
+                replaceFragment(TianMaoProductInfoFragment.newInstance(mEtTianMaoSearch.getText().toString()), R.id.flProductionView, false);
             }
         }
     }

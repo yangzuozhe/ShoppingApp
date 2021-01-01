@@ -7,6 +7,7 @@ import com.example.shoppingapp.bean.TianmaoBannerBean;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
 
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,9 +20,30 @@ import java.util.ArrayList;
  */
 public class TianmaoData {
 
+
     public void demo(int... a) {
         System.out.println(a);
         System.out.println(a);
+    }
+
+    public static void demo(String html){
+        ArrayList<TianmaoSearchBean> arrayList = new ArrayList<>();
+        Document document = Jsoup.parse(html);
+        Elements elements = document.select("div[class=view  ]")
+                .select("div[class=product  ]")
+                .select("div[class=product-iWrap]");
+
+        for (Element element : elements) {
+            //商品图片
+            String imageUrl = element
+                    .select("div[class=productThumb clearfix]")
+                    .select("div")
+                    .select("p[class=ks-switchable-content]")
+                    .select("b")
+                    .select("img")
+                    .attr("src");
+            Log.d("Demo",imageUrl);
+        }
     }
 
     /**
@@ -157,10 +179,10 @@ public class TianmaoData {
 //                    .select("div[class=tb-postAge]")
 //                    .select("span[class=tb-deliveryAdd]")
 //                    .text();
-            TIanMaoProductBean bean = new TIanMaoProductBean(pictureUrl,title,price,monthSell);
+            TIanMaoProductBean bean = new TIanMaoProductBean(pictureUrl, title, price, monthSell);
             arrayList.add(bean);
         }
-        Log.d("Demoxx",arrayList.toString()+"\n");
+        Log.d("Demoxx", arrayList.toString() + "\n");
         return arrayList;
     }
 

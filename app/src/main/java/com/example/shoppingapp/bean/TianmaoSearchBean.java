@@ -28,7 +28,7 @@ public class TianmaoSearchBean {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return "https:"+imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
