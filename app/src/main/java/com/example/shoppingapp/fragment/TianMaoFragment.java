@@ -17,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shoppingapp.OkHttpUtils;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.Data.TianmaoData;
-import com.example.shoppingapp.activity.TianMaoProductInfoActivity;
+import com.example.shoppingapp.activity.ProductInfoActivity;
 import com.example.shoppingapp.adapter.TianMaoAdapter;
 import com.example.shoppingapp.base.BaseFragment;
+import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.TianmaoBannerBean;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
 
@@ -134,7 +135,8 @@ public class TianMaoFragment extends BaseFragment {
     public void onClick(View view) {
         final int i = view.getId();
         if (i == R.id.btnTianMaoSearch || i == R.id.etTianMaoSearch) {
-            Intent intent = new Intent(getActivity(), TianMaoProductInfoActivity.class);
+            Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+            intent.putExtra(IntentKey.INTENT_KEY,IntentKey.TIAN_MAO_KEY);
             startActivity(intent);
         }
     }

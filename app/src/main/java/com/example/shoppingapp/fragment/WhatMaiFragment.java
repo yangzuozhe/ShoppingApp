@@ -13,7 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.shoppingapp.R;
-import com.example.shoppingapp.activity.TianMaoProductInfoActivity;
+import com.example.shoppingapp.activity.ProductInfoActivity;
+import com.example.shoppingapp.base.IntentKey;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,7 @@ public class WhatMaiFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class WhatMaiFragment extends Fragment {
     public void onClick(View v) {
         final int i = v.getId();
         if (i == R.id.btnWhatMaiSearch || i == R.id.edWhatMai) {
-            Intent intent = new Intent(getContext(), TianMaoProductInfoActivity.class);
+            Intent intent = new Intent(getContext(), ProductInfoActivity.class);
+            intent.putExtra(IntentKey.INTENT_KEY, IntentKey.WHAT_MAI_KEY);
             startActivity(intent);
         }
     }
