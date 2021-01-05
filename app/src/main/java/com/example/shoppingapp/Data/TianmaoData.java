@@ -185,7 +185,4 @@ public class TianmaoData {
         return arrayList;
     }
 
-    public void addData(String url, String imageUrl) {
-
-    }
 }

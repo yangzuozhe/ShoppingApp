@@ -20,6 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 商品搜索结果页面的信息
+ */
 public class ProductInfoActivity extends BaseActivity {
     @BindView(R.id.etTianMaoSearch)
     EditText mEtTianMaoSearch;

@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.ProductInfoActivity"></activity>
+        <activity android:name=".activity.ProductDetailInfoActivity"></activity>
+        <activity android:name=".activity.ProductInfoActivity" />
         <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

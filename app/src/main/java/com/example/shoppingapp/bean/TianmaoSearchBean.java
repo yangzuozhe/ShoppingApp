@@ -1,6 +1,8 @@
 package com.example.shoppingapp.bean;
 
-public class TianmaoSearchBean {
+import java.io.Serializable;
+
+public class TianmaoSearchBean implements Serializable {
     private String intentUrl;
     private String imageUrl;
     private String price;

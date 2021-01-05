@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 主页
+ */
 public class HomeActivity extends BaseActivity {
     @BindView(R.id.vpHome)
     ViewPager mVpHome;

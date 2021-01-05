@@ -10,17 +10,17 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.activity.ProductInfoActivity;
+import com.example.shoppingapp.base.BaseFragment;
 import com.example.shoppingapp.base.IntentKey;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WhatMaiFragment extends Fragment {
+public class WhatMaiFragment extends BaseFragment {
     @BindView(R.id.edWhatMai)
     EditText mEdWhatMai;
     @BindView(R.id.btnWhatMaiSearch)

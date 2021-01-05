@@ -1,5 +1,6 @@
 package com.example.shoppingapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,10 @@ import com.bumptech.glide.Glide;
 import com.example.shoppingapp.Data.WhatMaiData;
 import com.example.shoppingapp.OkHttpUtils;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.ProductDetailInfoActivity;
+import com.example.shoppingapp.activity.ProductInfoActivity;
+import com.example.shoppingapp.base.BaseFragment;
+import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.WhatMaiProductBean;
 
 import java.io.IOException;
@@ -28,7 +33,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class WhatMaiProductInfoFragment extends Fragment {
+public class WhatMaiProductInfoFragment extends BaseFragment {
     public static final String INFO_KEY = "INFO_KEY";
     @BindView(R.id.rvWmProductInfo)
     RecyclerView mRvWmProductInfo;
@@ -80,7 +85,7 @@ public class WhatMaiProductInfoFragment extends Fragment {
             @Override
             public void run() {
                 MyAdapter adapter = new MyAdapter(beanList);
-                GridLayoutManager manager = new GridLayoutManager(getContext(),2);
+                GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
                 mRvWmProductInfo.setLayoutManager(manager);
                 mRvWmProductInfo.setAdapter(adapter);
             }
@@ -127,6 +132,16 @@ public class WhatMaiProductInfoFragment extends Fragment {
             holder.mTvWmMark.setText(bean.getMark());
             holder.mTvWmPrice.setText(bean.getPrice());
             Glide.with(holder.mIvWmInfo.getContext()).load(bean.getPictureUrl()).into(holder.mIvWmInfo);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), ProductDetailInfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(IntentKey.BEAN_INFO,bean);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override

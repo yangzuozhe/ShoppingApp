@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProductDetailInfoActivity">
+
+    <ImageView
+        android:id="@+id/ivDePicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/android_bg" />
+
+
+    <TextView
+        android:id="@+id/tvDeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivDePicture"
+        tools:text="值友专享、疯狂星期三： SELECTED 思莱德 419412559 抽绳连帽羽绒服" />
+
+    <TextView
+        android:id="@+id/tvDePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toStartOf="@+id/tvDeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvDeTitle"
+        tools:text="299.5元包邮（需用券）" />
+
+    <TextView
+        android:id="@+id/tvDeMonthSell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDePrice"
+        tools:text="月售100" />
+
+
+    <TextView
+        android:id="@+id/tvInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/tvDeMonthSell"
+        app:layout_constraintTop_toBottomOf="@id/tvDeMonthSell"
+        tools:text="SELECTED 思莱德 419412559 抽绳连帽羽绒服，甄选优质羽绒填充，含绒量高达90%，L码充绒量196g，袖口收口设计，肌理纹路，简约时尚
+        ，搭配有型，保暖的同时兼具轻盈透气的特点蓬松度佳，整体为中长款设计，给冬日出行带来暖暖保护。" />
+</androidx.constraintlayout.widget.ConstraintLayout>

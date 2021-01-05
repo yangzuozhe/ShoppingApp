@@ -1,6 +1,8 @@
 package com.example.shoppingapp.bean;
 
-public class WhatMaiProductBean {
+import java.io.Serializable;
+
+public class WhatMaiProductBean implements Serializable {
     private String pictureUrl;
     private String title;
     private String price;
