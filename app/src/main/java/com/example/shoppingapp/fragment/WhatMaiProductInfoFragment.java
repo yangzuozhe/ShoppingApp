@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppingapp.Data.WhatMaiData;
@@ -85,7 +86,7 @@ public class WhatMaiProductInfoFragment extends BaseFragment {
             @Override
             public void run() {
                 MyAdapter adapter = new MyAdapter(beanList);
-                GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+                StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 mRvWmProductInfo.setLayoutManager(manager);
                 mRvWmProductInfo.setAdapter(adapter);
             }

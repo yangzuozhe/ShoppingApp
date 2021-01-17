@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +21,7 @@ import com.example.shoppingapp.base.BaseFragment;
 import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.TianmaoBannerBean;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
+import com.example.shoppingapp.widget.SearchBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -45,10 +43,10 @@ public class TianMaoFragment extends BaseFragment {
 
     @BindView(R.id.rvHomeGuide)
     RecyclerView mRvHomeGuide;
-    @BindView(R.id.etTianMaoSearch)
-    EditText mEtTianMaoSearch;
-    @BindView(R.id.btnTianMaoSearch)
-    Button mBtnTianMaoSearch;
+    @BindView(R.id.sbTianMaoSearch)
+    SearchBar mSbTianMaoSearch;
+//    @BindView(R.id.btnTianMaoSearch)
+//    Button mBtnTianMaoSearch;
     /**
      * 数据源
      */
@@ -70,8 +68,18 @@ public class TianMaoFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = LayoutInflater.from(getContext()).inflate(R.layout.tian_mao_fragment, null);
         ButterKnife.bind(this, fragmentView);
+        initView();
         requestTianmaoHome();
         return fragmentView;
+    }
+
+    public void initView() {
+        mSbTianMaoSearch.setOnclick(() -> {
+            Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
+            intent.putExtra(IntentKey.INTENT_KEY, IntentKey.TIAN_MAO_KEY);
+            startActivity(intent);
+        });
+
     }
 
     /**
@@ -129,16 +137,6 @@ public class TianMaoFragment extends BaseFragment {
      */
     public ArrayList<TianmaoBannerBean> requestTianmaoBanner() {
         return TianmaoData.TianMaoBannerBean();
-    }
-
-    @OnClick({R.id.btnTianMaoSearch,R.id.etTianMaoSearch})
-    public void onClick(View view) {
-        final int i = view.getId();
-        if (i == R.id.btnTianMaoSearch || i == R.id.etTianMaoSearch) {
-            Intent intent = new Intent(getActivity(), ProductInfoActivity.class);
-            intent.putExtra(IntentKey.INTENT_KEY,IntentKey.TIAN_MAO_KEY);
-            startActivity(intent);
-        }
     }
 
 
