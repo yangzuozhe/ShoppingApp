@@ -1,22 +1,14 @@
 package com.example.shoppingapp.base;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class BaseActivity extends AppCompatActivity {
 

@@ -5,27 +5,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/android_bg">
 
-    <EditText
-        android:id="@+id/edWhatMai"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnWhatMaiSearch"
+    <com.example.shoppingapp.widget.SearchBar
+        android:id="@+id/sbWhaiMai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/edWhatMai"
-        app:layout_constraintEnd_toEndOf="@id/edWhatMai"
-        app:layout_constraintTop_toTopOf="@+id/edWhatMai" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/flWhatMaiContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edWhatMai" />
+        app:layout_constraintTop_toBottomOf="@+id/sbWhaiMai" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

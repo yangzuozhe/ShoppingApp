@@ -2,7 +2,6 @@ package com.example.shoppingapp.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -49,7 +48,6 @@ public class SearchBar extends LinearLayout {
      * @param lister 控件的点击事件的方法，用于外部自定义
      */
     public void setOnclick(SearchBarClickLister lister) {
-
         mLister = lister;
     }
 
@@ -73,36 +71,11 @@ public class SearchBar extends LinearLayout {
         void onClick();
     }
 
-    private class MyGestureLister implements GestureDetector.OnGestureListener {
+    private class MyGestureLister extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onDown(MotionEvent e) {
             mLister.onClick();
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             return false;
         }
     }
