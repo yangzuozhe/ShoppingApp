@@ -57,4 +57,16 @@
         app:layout_constraintTop_toBottomOf="@id/tvDeMonthSell"
         tools:text="SELECTED 思莱德 419412559 抽绳连帽羽绒服，甄选优质羽绒填充，含绒量高达90%，L码充绒量196g，袖口收口设计，肌理纹路，简约时尚
         ，搭配有型，保暖的同时兼具轻盈透气的特点蓬松度佳，整体为中长款设计，给冬日出行带来暖暖保护。" />
+
+    <TextView
+        android:id="@+id/tvAddShoppingCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -20,7 +18,6 @@ import com.example.shoppingapp.Data.WhatMaiData;
 import com.example.shoppingapp.OkHttpUtils;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.activity.ProductDetailInfoActivity;
-import com.example.shoppingapp.activity.ProductInfoActivity;
 import com.example.shoppingapp.base.BaseFragment;
 import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.WhatMaiProductBean;
@@ -85,7 +82,7 @@ public class WhatMaiProductInfoFragment extends BaseFragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MyAdapter adapter = new MyAdapter(beanList);
+                WhatMaiProductInfoAdapter adapter = new WhatMaiProductInfoAdapter(beanList);
                 StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 mRvWmProductInfo.setLayoutManager(manager);
                 mRvWmProductInfo.setAdapter(adapter);
@@ -94,7 +91,7 @@ public class WhatMaiProductInfoFragment extends BaseFragment {
 
     }
 
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+    class WhatMaiProductInfoAdapter extends RecyclerView.Adapter<WhatMaiProductInfoAdapter.MyViewHolder> {
         ArrayList<WhatMaiProductBean> mBeanList;
 
 
@@ -114,7 +111,7 @@ public class WhatMaiProductInfoFragment extends BaseFragment {
             }
         }
 
-        public MyAdapter(ArrayList<WhatMaiProductBean> beanList) {
+        public WhatMaiProductInfoAdapter(ArrayList<WhatMaiProductBean> beanList) {
             mBeanList = beanList;
         }
 

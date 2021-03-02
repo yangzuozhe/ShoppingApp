@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 商品的详细页面的信息
@@ -88,5 +89,12 @@ public class ProductDetailInfoActivity extends BaseActivity {
         mTvDePrice.setText(bean.getPrice());
         mTvDeMonthSell.setVisibility(View.GONE);
         mTvInfoText.setText(bean.getMark());
+    }
+
+    @OnClick(R.id.tvAddShoppingCar)
+    public void onClick(View view){
+        if (view.getId() == R.id.tvAddShoppingCar){
+
+        }
     }
 }
