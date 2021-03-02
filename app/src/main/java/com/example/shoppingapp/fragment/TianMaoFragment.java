@@ -34,19 +34,16 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class TianMaoFragment extends BaseFragment {
-
     /**
      * 引导界面的数据
      */
     ArrayList<TianmaoGuideBean> mHomeBeanList;
 
-
     @BindView(R.id.rvHomeGuide)
     RecyclerView mRvHomeGuide;
     @BindView(R.id.sbTianMaoSearch)
     SearchBar mSbTianMaoSearch;
-//    @BindView(R.id.btnTianMaoSearch)
-//    Button mBtnTianMaoSearch;
+
     /**
      * 数据源
      */

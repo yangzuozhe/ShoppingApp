@@ -6,21 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpHome"
+    <FrameLayout
+        android:id="@+id/flHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/fgTmFragment"-->
-<!--        android:name="com.example.shoppingapp.fragment.TianMaoFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-<!--    <fragment-->
-<!--        android:id="@+id/fgZmFragment"-->
-<!--        android:name="com.example.shoppingapp.fragment.WhatMaiFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+    <com.example.shoppingapp.widget.BottomButton
+        android:id="@+id/bottomButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

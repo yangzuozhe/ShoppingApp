@@ -1,19 +1,15 @@
 package com.example.shoppingapp.activity;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
-import com.example.shoppingapp.fragment.TianMaoFragment;
-import com.example.shoppingapp.fragment.WhatMaiFragment;
-
-import java.util.ArrayList;
+import com.example.shoppingapp.fragment.HomeFragment;
+import com.example.shoppingapp.fragment.ShoppingCarFragment;
+import com.example.shoppingapp.widget.BottomButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,41 +18,53 @@ import butterknife.ButterKnife;
  * 主页
  */
 public class HomeActivity extends BaseActivity {
-    @BindView(R.id.vpHome)
-    ViewPager mVpHome;
-    ArrayList<Fragment> mFragmentList = new ArrayList<>();
+    @BindView(R.id.flHome)
+    FrameLayout mFlHome;
+    @BindView(R.id.bottomButton)
+    BottomButton mBottomButton;
+    private Fragment mHomeFragment;
+    private Fragment mShoppingCar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mFragmentList.add(TianMaoFragment.newInstance());
-        mFragmentList.add(WhatMaiFragment.newInstance());
-        HomeViewPagerAdapter adapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
-        mVpHome.setAdapter(adapter);
+        initBottomButton();
+        addHome();
     }
 
-
-    class HomeViewPagerAdapter extends FragmentPagerAdapter {
-        ArrayList<Fragment> mFgList;
-
-
-        public HomeViewPagerAdapter(@NonNull FragmentManager fm, ArrayList<Fragment> fragmentList) {
-            super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-            mFgList = fragmentList;
+    /**
+     * 添加首页
+     */
+    private void addHome() {
+        if (mHomeFragment == null) {
+            mHomeFragment = new HomeFragment();
         }
+        addFragmentWithoutClearOld(mShoppingCar, mHomeFragment, R.id.flHome);
+    }
 
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return mFgList.get(position);
+    private void addShoppingCar() {
+        if (mShoppingCar == null) {
+            mShoppingCar = ShoppingCarFragment.newInstance();
         }
+        addFragmentWithoutClearOld(mHomeFragment, mShoppingCar, R.id.flHome);
+    }
 
-        @Override
-        public int getCount() {
-            return mFgList.size();
-        }
+    /**
+     * 初始话底部按钮控件的操作
+     */
+    private void initBottomButton() {
+        mBottomButton.setOnClickLister(v -> {
+            int i = v.getId();
+            if (i == R.id.btnHome) {
+                addHome();
+            } else if (i == R.id.btnShoppingCar) {
+                addShoppingCar();
+            }
+
+        });
     }
 
 

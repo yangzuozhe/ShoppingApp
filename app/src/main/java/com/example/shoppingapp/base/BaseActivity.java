@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class BaseActivity extends AppCompatActivity {
-
-
+    FragmentManager mManager;
+    FragmentTransaction mTransaction;
 
     /**
      * 替换碎片，这里表示替换这个碎片会让之前的碎片小时不见
@@ -22,14 +22,16 @@ public class BaseActivity extends AppCompatActivity {
      * @param isBack   表示是否添加返回栈
      */
     public void replaceFragment(Fragment fragment, int parentId, boolean isBack) {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(parentId, fragment);
+        if (mManager == null) {
+            mManager = getSupportFragmentManager();
+        }
+        mTransaction = mManager.beginTransaction();
+        mTransaction.replace(parentId, fragment);
         if (isBack) {
             //这句话让碎片有返回栈，没有这个的话，就相当于之前的碎片就被消除了，按下返回键直接退出程序了
-            transaction.addToBackStack(null);
+            mTransaction.addToBackStack(null);
         }
-        transaction.commit();
+        mTransaction.commit();
     }
 
     /**
@@ -66,8 +68,30 @@ public class BaseActivity extends AppCompatActivity {
                         (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.showSoftInput(editText, 0);
             }
-        },200);
+        }, 200);
 
     }
 
+    /**
+     * 这个方法会让旧的fragment 不会重新实例化对象，这样子写很好
+     *
+     * @param oldFragment 旧的碎片
+     * @param newFragment 新的碎片
+     * @param parentId    需要搭载的父容器
+     */
+    public void addFragmentWithoutClearOld(Fragment oldFragment, Fragment newFragment, int parentId) {
+        final FragmentManager manager = getSupportFragmentManager();
+        final FragmentTransaction transaction = manager.beginTransaction();
+        //判断旧的控件是否为空
+        if (oldFragment != null) {
+            //判断新的控件对象是否已经被添加了
+            if (!newFragment.isAdded()) {
+                transaction.hide(oldFragment).add(parentId, newFragment).commit();
+            } else {
+                transaction.hide(oldFragment).show(newFragment).commit();
+            }
+        } else {
+            transaction.add(parentId, newFragment).commit();
+        }
+    }
 }
