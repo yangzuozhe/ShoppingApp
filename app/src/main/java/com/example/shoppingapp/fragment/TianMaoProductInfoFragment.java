@@ -144,7 +144,7 @@ public class TianMaoProductInfoFragment extends BaseFragment {
             holder.tvPrice.setText(bean.getPrice());
             holder.tvSellNumber.setText(bean.getStatus());
             holder.tvStoryName.setText(bean.getShopName());
-            Glide.with(mContext).load(bean.getImageUrl()).into(holder.ivInfoBg);
+            Glide.with(mContext).load(bean.getPicture()).into(holder.ivInfoBg);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

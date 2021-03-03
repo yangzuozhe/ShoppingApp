@@ -129,7 +129,7 @@ public class WhatMaiProductInfoFragment extends BaseFragment {
             holder.mTvWmTitle.setText(bean.getTitle());
             holder.mTvWmMark.setText(bean.getMark());
             holder.mTvWmPrice.setText(bean.getPrice());
-            Glide.with(holder.mIvWmInfo.getContext()).load(bean.getPictureUrl()).into(holder.mIvWmInfo);
+            Glide.with(holder.mIvWmInfo.getContext()).load(bean.getPicture()).into(holder.mIvWmInfo);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

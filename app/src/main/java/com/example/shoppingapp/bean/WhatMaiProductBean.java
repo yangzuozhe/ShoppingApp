@@ -2,14 +2,14 @@ package com.example.shoppingapp.bean;
 
 import java.io.Serializable;
 
-public class WhatMaiProductBean implements Serializable {
-    private String pictureUrl;
+public class WhatMaiProductBean extends BaseBean implements Serializable {
+    private String picture;
     private String title;
     private String price;
     private String mark;
 
     public WhatMaiProductBean(String pictureUrl, String title, String price, String mark) {
-        this.pictureUrl = pictureUrl;
+        this.picture = pictureUrl;
         this.title = title;
         this.price = price;
         this.mark = mark;
@@ -18,21 +18,24 @@ public class WhatMaiProductBean implements Serializable {
     @Override
     public String toString() {
         return "TIanMaoProductBean{" +
-                "pictureUrl='" + pictureUrl + '\'' +
+                "pictureUrl='" + picture + '\'' +
                 ", title='" + title + '\'' +
                 ", price='" + price + '\'' +
                 ", mark='" + mark + '\'' +
                 '}' + "\n";
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    @Override
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @Override
     public void setPrice(String price) {
         this.price = price;
     }
@@ -41,14 +44,17 @@ public class WhatMaiProductBean implements Serializable {
         this.mark = mark;
     }
 
-    public String getPictureUrl() {
-        return "https:" + pictureUrl;
+    @Override
+    public String getPicture() {
+        return "https:" + picture;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public String getPrice() {
         return price;
     }

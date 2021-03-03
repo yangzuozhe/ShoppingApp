@@ -2,9 +2,9 @@ package com.example.shoppingapp.bean;
 
 import java.io.Serializable;
 
-public class TianmaoSearchBean implements Serializable {
+public class TianmaoSearchBean extends BaseBean implements Serializable {
     private String intentUrl;
-    private String imageUrl;
+    private String picture;
     private String price;
     private String title;
     private String shopName;
@@ -13,7 +13,7 @@ public class TianmaoSearchBean implements Serializable {
 
     public TianmaoSearchBean(String intentUrl, String imageUrl, String price, String title, String shopName, String shopUrl, String status) {
         this.intentUrl = intentUrl;
-        this.imageUrl = imageUrl;
+        this.picture = imageUrl;
         this.price = price;
         this.title = title;
         this.shopName = shopName;
@@ -29,26 +29,32 @@ public class TianmaoSearchBean implements Serializable {
         this.intentUrl = intentUrl;
     }
 
-    public String getImageUrl() {
-        return "https:"+imageUrl;
+    @Override
+    public String getPicture() {
+        return "https:"+ picture;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    @Override
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
+    @Override
     public String getPrice() {
         return price;
     }
 
+    @Override
     public void setPrice(String price) {
         this.price = price;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
@@ -81,7 +87,7 @@ public class TianmaoSearchBean implements Serializable {
    public String toString() {
       return "TaoBaoSearchBean{" +
               "intentUrl='" + intentUrl + '\'' +
-              ", imageUrl='" + imageUrl + '\'' +
+              ", imageUrl='" + picture + '\'' +
               ", price='" + price + '\'' +
               ", title='" + title + '\'' +
               ", shopName='" + shopName + '\'' +

@@ -1,20 +1,19 @@
 package com.example.shoppingapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
 import com.example.shoppingapp.base.IntentKey;
+import com.example.shoppingapp.bean.BaseBean;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
 import com.example.shoppingapp.bean.WhatMaiProductBean;
-
-import org.w3c.dom.Text;
+import com.example.shoppingapp.sql.SQLiteUtils;
 
 import java.io.Serializable;
 
@@ -27,7 +26,7 @@ import butterknife.OnClick;
  */
 public class ProductDetailInfoActivity extends BaseActivity {
     String mIntentKey;
-    Serializable mBean;
+    BaseBean mBean;
     /**
      * 商品图片
      */
@@ -53,11 +52,15 @@ public class ProductDetailInfoActivity extends BaseActivity {
      */
     @BindView(R.id.tvInfoText)
     TextView mTvInfoText;
+    @BindView(R.id.tvAddShoppingCar)
+    TextView mTvAddShoppingCar;
+    SQLiteUtils mSqLiteUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail_info);
+        mSqLiteUtils = new SQLiteUtils(ProductDetailInfoActivity.this);
         ButterKnife.bind(this);
         getData();
     }
@@ -66,7 +69,7 @@ public class ProductDetailInfoActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mIntentKey = bundle.getString(IntentKey.INTENT_KEY);
-            mBean = bundle.getSerializable(IntentKey.BEAN_INFO);
+            mBean = (BaseBean) bundle.getSerializable(IntentKey.BEAN_INFO);
             if (mBean instanceof TianmaoSearchBean) {
                 onBindTianMao((TianmaoSearchBean) mBean);
             } else if (mBean instanceof WhatMaiProductBean) {
@@ -76,7 +79,7 @@ public class ProductDetailInfoActivity extends BaseActivity {
     }
 
     public void onBindTianMao(TianmaoSearchBean bean) {
-        Glide.with(ProductDetailInfoActivity.this).load(bean.getImageUrl()).into(mIvDePicture);
+        Glide.with(ProductDetailInfoActivity.this).load(bean.getPicture()).into(mIvDePicture);
         mTvDeTitle.setText(bean.getTitle());
         mTvDePrice.setText(bean.getPrice());
         mTvDeMonthSell.setText(bean.getStatus());
@@ -84,7 +87,7 @@ public class ProductDetailInfoActivity extends BaseActivity {
     }
 
     public void onBindWhatMai(WhatMaiProductBean bean) {
-        Glide.with(ProductDetailInfoActivity.this).load(bean.getPictureUrl()).into(mIvDePicture);
+        Glide.with(ProductDetailInfoActivity.this).load(bean.getPicture()).into(mIvDePicture);
         mTvDeTitle.setText(bean.getTitle());
         mTvDePrice.setText(bean.getPrice());
         mTvDeMonthSell.setVisibility(View.GONE);
@@ -92,9 +95,11 @@ public class ProductDetailInfoActivity extends BaseActivity {
     }
 
     @OnClick(R.id.tvAddShoppingCar)
-    public void onClick(View view){
-        if (view.getId() == R.id.tvAddShoppingCar){
-
+    public void onClick(View view) {
+        if (view.getId() == R.id.tvAddShoppingCar) {
+            //插入数据
+            mSqLiteUtils.insertData("Shopping", mBean);
+            Toast.makeText(view.getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
         }
     }
 }
