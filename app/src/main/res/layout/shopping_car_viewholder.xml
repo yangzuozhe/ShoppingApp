@@ -1,53 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="10dp">
 
-    <ImageView
-        android:id="@+id/ivShoppingImg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/ic_launcher_background" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/tian_mao_search_bg">
 
-    <TextView
-        android:id="@+id/tvShoppingTitle"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/ivShoppingImg"
-        app:layout_constraintTop_toTopOf="@id/ivShoppingImg"
-        tools:text="我是标题" />
+        <ImageView
+            android:id="@+id/ivShoppingImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            tools:background="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/tvShoppingPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="@+id/tvShoppingTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvShoppingTitle"
-        tools:text="￥20" />
 
-    <TextView
-        android:id="@+id/tvShoppingInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        app:layout_constraintEnd_toEndOf="@+id/tvShoppingTitle"
-        app:layout_constraintStart_toStartOf="@+id/tvShoppingPrice"
-        app:layout_constraintTop_toBottomOf="@+id/tvShoppingPrice"
-        tools:text="我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍" />
+        <ImageView
+            android:id="@+id/ivProductAdd"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/ivShoppingImg"
+            android:layout_alignStart="@+id/ivShoppingImg"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/add_ic" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvProductNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ivProductAdd"
+            android:layout_alignBottom="@+id/ivProductAdd"
+
+            android:layout_toEndOf="@+id/ivProductAdd"
+            android:gravity="center"
+            android:text="100"
+            android:textColor="@android:color/holo_red_light" />
+
+        <ImageView
+            android:id="@+id/ivProductReduce"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignTop="@+id/tvProductNumber"
+            android:layout_toEndOf="@+id/tvProductNumber"
+            android:background="@drawable/reduce_ic" />
+
+
+        <TextView
+            android:id="@+id/tvShoppingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ivShoppingImg"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/ivShoppingImg"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="20sp"
+            tools:text="我是标题" />
+
+        <TextView
+            android:id="@+id/tvShoppingPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvShoppingTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/ivShoppingImg"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="20sp"
+            tools:text="￥20000000000001111111111111111" />
+
+        <TextView
+            android:id="@+id/tvShoppingInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvShoppingPrice"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/ivShoppingImg"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍我司介绍" />
+
+    </RelativeLayout>
+
+</FrameLayout>

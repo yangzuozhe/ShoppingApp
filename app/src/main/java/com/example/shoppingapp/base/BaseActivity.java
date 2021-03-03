@@ -91,7 +91,9 @@ public class BaseActivity extends AppCompatActivity {
                 transaction.hide(oldFragment).show(newFragment).commit();
             }
         } else {
-            transaction.add(parentId, newFragment).commit();
+            if (!newFragment.isAdded()){
+                transaction.add(parentId, newFragment).commit();
+            }
         }
     }
 }
