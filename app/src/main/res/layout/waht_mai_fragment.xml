@@ -13,11 +13,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/flWhatMaiContent"
+    <VideoView
+        android:id="@+id/vvWhatMai"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sbWhaiMai" />
+
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/flWhatMaiContent"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/sbWhaiMai" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

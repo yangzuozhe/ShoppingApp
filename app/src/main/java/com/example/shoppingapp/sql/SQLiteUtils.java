@@ -42,6 +42,12 @@ public class SQLiteUtils {
         return mHelper.getReadableDatabase();
     }
 
+    /**
+     * 插入数据
+     * @param table 表名
+     * @param bean 数据bean类
+     * @param <T> 继承于BaseBean 的类
+     */
     public <T extends BaseBean> void insertData(String table, T bean) {
         ArrayMap<String, String> map = new ArrayMap<>();
         if (bean == null) {

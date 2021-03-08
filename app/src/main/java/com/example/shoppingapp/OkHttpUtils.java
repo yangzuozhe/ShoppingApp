@@ -8,7 +8,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 public class OkHttpUtils {
-    int cacheSize = 10 * 1024 * 1024;
     public static void requestData(String url, okhttp3.Callback callback) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 //一旦超过该时间，就中断不再加载

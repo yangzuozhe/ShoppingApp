@@ -46,7 +46,7 @@ public class TianmaoData {
     }
 
     /**
-     * 淘宝搜索的内容
+     * 天猫搜索的内容
      */
     public static ArrayList<TianmaoSearchBean> TianmaoSearch(String html) {
         ArrayList<TianmaoSearchBean> arrayList = new ArrayList<>();

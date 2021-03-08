@@ -2,6 +2,7 @@ package com.example.shoppingapp.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.BaseBean;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
 import com.example.shoppingapp.bean.WhatMaiProductBean;
+import com.example.shoppingapp.fragment.ShoppingCarFragment;
 import com.example.shoppingapp.sql.SQLiteUtils;
 
 import java.io.Serializable;
@@ -94,12 +96,14 @@ public class ProductDetailInfoActivity extends BaseActivity {
         mTvInfoText.setText(bean.getMark());
     }
 
-    @OnClick(R.id.tvAddShoppingCar)
+    @OnClick({R.id.tvAddShoppingCar,R.id.btnShopping})
     public void onClick(View view) {
         if (view.getId() == R.id.tvAddShoppingCar) {
             //插入数据
             mSqLiteUtils.insertData("Shopping", mBean);
             Toast.makeText(view.getContext(),"成功加入购物车",Toast.LENGTH_SHORT).show();
+        }else if (view.getId() == R.id.btnShopping){
+            ShoppingCarFragment.newInstance().show(getSupportFragmentManager(),"shoppingCar");
         }
     }
 }

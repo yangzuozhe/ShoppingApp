@@ -13,6 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 public class BaseActivity extends AppCompatActivity {
     FragmentManager mManager;
     FragmentTransaction mTransaction;
+    /**
+     * 键盘管理
+     */
+    InputMethodManager mInputManager;
 
     /**
      * 替换碎片，这里表示替换这个碎片会让之前的碎片小时不见
@@ -58,18 +62,28 @@ public class BaseActivity extends AppCompatActivity {
      * @param editText
      */
     public void showSoftInputFromWindow(EditText editText) {
+        if (mInputManager != null) {
+            return;
+        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 editText.setFocusable(true);
                 editText.setFocusableInTouchMode(true);
                 editText.requestFocus();
-                InputMethodManager inputManager =
+                mInputManager =
                         (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.showSoftInput(editText, 0);
+                mInputManager.showSoftInput(editText, 0);
             }
         }, 200);
 
+    }
+
+    public void hideSoftInputFromWindow(EditText editText) {
+        if (mInputManager == null) {
+            mInputManager = (InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        }
+        new Handler().postDelayed(() -> mInputManager.hideSoftInputFromWindow(editText.getWindowToken(), 0),200);
     }
 
     /**
@@ -91,9 +105,11 @@ public class BaseActivity extends AppCompatActivity {
                 transaction.hide(oldFragment).show(newFragment).commit();
             }
         } else {
-            if (!newFragment.isAdded()){
+            if (!newFragment.isAdded()) {
                 transaction.add(parentId, newFragment).commit();
             }
         }
     }
+
+
 }

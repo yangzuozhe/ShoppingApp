@@ -1,20 +1,25 @@
 package com.example.shoppingapp.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shoppingapp.R;
-import com.example.shoppingapp.base.BaseFragment;
+import com.example.shoppingapp.base.DensityUtil;
 import com.example.shoppingapp.dialog.LongClickCancelDialog;
 import com.example.shoppingapp.sql.SQLiteUtils;
 
@@ -25,16 +30,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ShoppingCarFragment extends BaseFragment {
+public class ShoppingCarFragment extends DialogFragment {
     @BindView(R.id.rvShopping)
     RecyclerView mRvShopping;
     SQLiteUtils mSQLiteUtils;
     ShoppingAdapter mShopAdapter;
-
+    ArrayList<HashMap<String, String>> mDateList = new ArrayList<>();
 
     public static ShoppingCarFragment newInstance() {
         ShoppingCarFragment fragment = new ShoppingCarFragment();
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE,R.style.shoppingDialog);
     }
 
     @Nullable
@@ -43,25 +54,55 @@ public class ShoppingCarFragment extends BaseFragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.shopping_car_fragment, null);
         mSQLiteUtils = new SQLiteUtils(getContext());
         ButterKnife.bind(this, view);
+        initKeyList();
         initAdapter();
         return view;
     }
 
-    private ArrayList<HashMap<String, String>> initKeyList() {
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        final Dialog dialog = getDialog();
+        Window window;
+        if (dialog != null) {
+            DensityUtil densityUtil = new DensityUtil();
+
+            window = dialog.getWindow();
+            if (window != null) {
+                WindowManager.LayoutParams params = window.getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = densityUtil.dip2px(getContext(),500);
+                params.gravity = Gravity.BOTTOM;
+                params.windowAnimations = R.style.shoppingDialogAnimation;
+                window.setAttributes(params);
+            }
+        }
+        initKeyList();
+    }
+
+    private void initKeyList() {
+        mDateList.clear();
         List<String> list = new ArrayList<>();
         list.add("title");
         list.add("picture");
         list.add("price");
         list.add("number");
-        return mSQLiteUtils.queryAllData(list, "Shopping");
+        mDateList.addAll(mSQLiteUtils.queryAllData(list, "Shopping"));
+        if (mShopAdapter != null) {
+            mShopAdapter.notifyDataSetChanged();
+        }
     }
 
 
     private void initAdapter() {
-        mShopAdapter = new ShoppingAdapter(initKeyList());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRvShopping.setLayoutManager(layoutManager);
-        mRvShopping.setAdapter(mShopAdapter);
+        if (mShopAdapter == null) {
+            mShopAdapter = new ShoppingAdapter(mDateList);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+            mRvShopping.setLayoutManager(layoutManager);
+            mRvShopping.setAdapter(mShopAdapter);
+        }
+
     }
 
 
@@ -140,7 +181,7 @@ public class ShoppingCarFragment extends BaseFragment {
                             mShopAdapter.notifyDataSetChanged();
                             dialog.dismiss();
                         });
-                       dialog.show();
+                        dialog.show();
                         return false;
                     });
                 } else if ("picture".equals(key)) {

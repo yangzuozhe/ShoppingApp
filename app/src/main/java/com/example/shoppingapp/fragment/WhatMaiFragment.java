@@ -1,10 +1,13 @@
 package com.example.shoppingapp.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +24,9 @@ import butterknife.ButterKnife;
 public class WhatMaiFragment extends BaseFragment {
     @BindView(R.id.sbWhaiMai)
     SearchBar mSbWhaiMai;
-
-
+    @BindView(R.id.vvWhatMai)
+    VideoView mVvWhatMai;
+    MediaController mMediaController;
     public static WhatMaiFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -38,6 +42,7 @@ public class WhatMaiFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.waht_mai_fragment, null);
         ButterKnife.bind(this, view);
         initView();
+        initVideoView();
         return view;
     }
     public void initView(){
@@ -48,4 +53,22 @@ public class WhatMaiFragment extends BaseFragment {
         });
     }
 
+    /**
+     * 初始化视频和视频控制器
+     */
+    private void initVideoView() {
+        //进度控制器
+        mMediaController = new MediaController(getContext());
+        //视频view
+        mVvWhatMai.setMediaController(mMediaController);
+        //网络资源的视频
+        mVvWhatMai.setVideoURI(Uri.parse("https://vd3.bdstatic.com/mda-kedw03n0xmy3wrwn/v1-cae/hd/mda-kedw03n0xmy3wrwn.mp4"));
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mVvWhatMai.pause();
+    }
 }

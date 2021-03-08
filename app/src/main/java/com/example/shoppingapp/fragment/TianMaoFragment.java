@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,9 +66,17 @@ public class TianMaoFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = LayoutInflater.from(getContext()).inflate(R.layout.tian_mao_fragment, null);
         ButterKnife.bind(this, fragmentView);
+        initSearchBar();
         initView();
         requestTianmaoHome();
         return fragmentView;
+    }
+
+    private void initSearchBar() {
+        EditText editText = mSbTianMaoSearch.findViewById(R.id.etTianMaoSearch);
+        if (editText != null) {
+            hideSoftInputFromWindow(editText);
+        }
     }
 
     public void initView() {
