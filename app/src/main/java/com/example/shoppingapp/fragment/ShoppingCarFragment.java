@@ -45,13 +45,13 @@ public class ShoppingCarFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE,R.style.shoppingDialog);
+        setStyle(STYLE_NO_TITLE, R.style.shoppingDialog);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.shopping_car_fragment, null);
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.shopping_car_fragment, null);
         mSQLiteUtils = new SQLiteUtils(getContext());
         ButterKnife.bind(this, view);
         initKeyList();
@@ -63,18 +63,23 @@ public class ShoppingCarFragment extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
+        //获得本 Dialog 的对象
         final Dialog dialog = getDialog();
-        Window window;
         if (dialog != null) {
-            DensityUtil densityUtil = new DensityUtil();
-
-            window = dialog.getWindow();
+            //用于 dp 转 px 的类
+            final DensityUtil densityUtil = new DensityUtil();
+            //获取窗口的对象
+            final Window window = dialog.getWindow();
             if (window != null) {
                 WindowManager.LayoutParams params = window.getAttributes();
+                //弹窗宽度设为铺满屏幕
                 params.width = WindowManager.LayoutParams.MATCH_PARENT;
-                params.height = densityUtil.dip2px(getContext(),500);
+                //高度设为 500dp
+                params.height = densityUtil.dip2px(getContext(), 500);
+                //位置设在底部
                 params.gravity = Gravity.BOTTOM;
-                params.windowAnimations = R.style.shoppingDialogAnimation;
+//               如果说 style xml文件设置们没有效果的话，可以使用这个试试
+//              params.windowAnimations = R.style.shoppingDialogAnimation;
                 window.setAttributes(params);
             }
         }
@@ -192,8 +197,6 @@ public class ShoppingCarFragment extends DialogFragment {
                     holder.mTvProductNumber.setText(map.get(key));
                 }
             }
-
-
         }
 
         @Override

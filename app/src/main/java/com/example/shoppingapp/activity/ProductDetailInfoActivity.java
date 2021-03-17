@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
+import com.example.shoppingapp.base.Constance;
 import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.BaseBean;
 import com.example.shoppingapp.bean.TianmaoSearchBean;
@@ -26,6 +28,7 @@ import butterknife.OnClick;
 /**
  * 商品的详细页面的信息
  */
+@Route(path = Constance.ACTIVITY_URL_PRODUCT_DETAIL_INFO)
 public class ProductDetailInfoActivity extends BaseActivity {
     String mIntentKey;
     BaseBean mBean;

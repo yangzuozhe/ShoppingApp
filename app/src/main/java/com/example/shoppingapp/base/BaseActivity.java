@@ -1,14 +1,18 @@
 package com.example.shoppingapp.base;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 public class BaseActivity extends AppCompatActivity {
     FragmentManager mManager;
@@ -17,6 +21,15 @@ public class BaseActivity extends AppCompatActivity {
      * 键盘管理
      */
     InputMethodManager mInputManager;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //ARouter inject 注入
+        ARouter.getInstance().inject(this);
+    }
+
+
 
     /**
      * 替换碎片，这里表示替换这个碎片会让之前的碎片小时不见
@@ -29,7 +42,9 @@ public class BaseActivity extends AppCompatActivity {
         if (mManager == null) {
             mManager = getSupportFragmentManager();
         }
-        mTransaction = mManager.beginTransaction();
+        if (mTransaction == null){
+            mTransaction = mManager.beginTransaction();
+        }
         mTransaction.replace(parentId, fragment);
         if (isBack) {
             //这句话让碎片有返回栈，没有这个的话，就相当于之前的碎片就被消除了，按下返回键直接退出程序了

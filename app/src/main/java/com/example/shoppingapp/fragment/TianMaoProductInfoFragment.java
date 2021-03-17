@@ -3,6 +3,8 @@ package com.example.shoppingapp.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class TianMaoProductInfoFragment extends BaseFragment {
     RecyclerView mRvProduceInfo;
     //    static TianMaoProductInfoFragment fragment;
     public static final String INFO_KEY = "INFO_KEY";
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     public static TianMaoProductInfoFragment newInstance(String info) {
         TianMaoProductInfoFragment fragment = new TianMaoProductInfoFragment();
@@ -61,16 +64,12 @@ public class TianMaoProductInfoFragment extends BaseFragment {
     }
 
     public void initRecyclerView(ArrayList<TianmaoSearchBean> searchBeanArrayList) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-                mRvProduceInfo.setLayoutManager(manager);
-                final ProductInfoAdapter adapter = new ProductInfoAdapter(getContext(),searchBeanArrayList);
-                mRvProduceInfo.setAdapter(adapter);
-            }
+        mHandler.post(() -> {
+            GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+            mRvProduceInfo.setLayoutManager(manager);
+            final ProductInfoAdapter adapter = new ProductInfoAdapter(getContext(), searchBeanArrayList);
+            mRvProduceInfo.setAdapter(adapter);
         });
-
     }
 
 
@@ -123,11 +122,22 @@ public class TianMaoProductInfoFragment extends BaseFragment {
             }
         }
 
+        class LoadingViewHolder extends RecyclerView.ViewHolder{
+
+            public LoadingViewHolder(@NonNull View itemView) {
+                super(itemView);
+            }
+        }
         public ProductInfoAdapter(Context context, ArrayList<TianmaoSearchBean> beanList) {
             mContext = context;
             mBeanList = beanList;
         }
 
+        @Override
+        public int getItemViewType(int position) {
+
+            return super.getItemViewType(position);
+        }
 
         @NonNull
         @Override
@@ -145,15 +155,12 @@ public class TianMaoProductInfoFragment extends BaseFragment {
             holder.tvSellNumber.setText(bean.getStatus());
             holder.tvStoryName.setText(bean.getShopName());
             Glide.with(mContext).load(bean.getPicture()).into(holder.ivInfoBg);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), ProductDetailInfoActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(IntentKey.BEAN_INFO,bean);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(getContext(), ProductDetailInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(IntentKey.BEAN_INFO, bean);
+                intent.putExtras(bundle);
+                startActivity(intent);
             });
         }
 

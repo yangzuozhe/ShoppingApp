@@ -1,5 +1,6 @@
 package com.example.shoppingapp.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.ProductInfoActivity;
+import com.example.shoppingapp.base.Constance;
+import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
 
 import java.util.List;
@@ -43,6 +48,12 @@ public class TianMaoGuideAdapter extends RecyclerView.Adapter<TianMaoGuideAdapte
     public void onBindViewHolder(@NonNull GuideViewHolder holder, int position) {
         TianmaoGuideBean bean = mBeanList.get(position);
         final String title = bean.getTitle();
+        holder.button.setOnClickListener(v -> {
+            ARouter.getInstance().build(Constance.ACTIVITY_URL_PRODUCT_INFO)
+                    .withString(IntentKey.INTENT_KEY, IntentKey.TIAN_MAO_KEY)
+                    .withString(IntentKey.HOME_LABEL_INFO, title)
+                    .navigation();
+        });
         holder.button.setText(title);
     }
 

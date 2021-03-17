@@ -17,5 +17,9 @@ public class IntentKey {
      * 什么值得买的数据
      */
     public static final String BEAN_INFO = "WHAT_MAI_INFO";
+    /**
+     * 判断是否点击了标签
+     */
+    public static final String HOME_LABEL_INFO = "HOME_LABEL_INFO";
 
 }
