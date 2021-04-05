@@ -27,6 +27,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ARouter inject 注入
         ARouter.getInstance().inject(this);
+        StatusBarUtils.setHalfTransparent(this);
     }
 
 

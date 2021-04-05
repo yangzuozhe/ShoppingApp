@@ -38,7 +38,7 @@ public class TianMaoFragment extends BaseFragment {
     /**
      * 引导界面的数据
      */
-    ArrayList<TianmaoGuideBean> mHomeBeanList;
+    private ArrayList<TianmaoGuideBean> mHomeBeanList;
 
     @BindView(R.id.rvHomeGuide)
     RecyclerView mRvHomeGuide;

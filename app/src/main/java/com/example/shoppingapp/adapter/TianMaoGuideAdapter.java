@@ -21,10 +21,12 @@ import java.util.List;
 
 public class TianMaoGuideAdapter extends RecyclerView.Adapter<TianMaoGuideAdapter.GuideViewHolder> {
 
-    List<TianmaoGuideBean> mBeanList;
+    private List<TianmaoGuideBean> mBeanList;
+    private String mIntentType;
 
-    public TianMaoGuideAdapter(List<TianmaoGuideBean> beanList) {
+    public TianMaoGuideAdapter(List<TianmaoGuideBean> beanList, String intentType) {
         mBeanList = beanList;
+        mIntentType = intentType;
     }
 
     class GuideViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +52,7 @@ public class TianMaoGuideAdapter extends RecyclerView.Adapter<TianMaoGuideAdapte
         final String title = bean.getTitle();
         holder.button.setOnClickListener(v -> {
             ARouter.getInstance().build(Constance.ACTIVITY_URL_PRODUCT_INFO)
-                    .withString(IntentKey.INTENT_KEY, IntentKey.TIAN_MAO_KEY)
+                    .withString(IntentKey.INTENT_KEY, mIntentType)
                     .withString(IntentKey.HOME_LABEL_INFO, title)
                     .navigation();
         });

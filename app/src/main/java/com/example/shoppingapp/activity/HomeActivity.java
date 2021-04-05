@@ -63,8 +63,10 @@ public class HomeActivity extends BaseActivity {
             int i = v.getId();
             if (i == R.id.btnHome) {
                 addHome();
+                mBottomButton.setBtnHomeSelect(true);
             } else if (i == R.id.btnShoppingCar) {
                 addShoppingCar();
+                mBottomButton.setBtnShoppingCarSelect(true);
             }
 
         });

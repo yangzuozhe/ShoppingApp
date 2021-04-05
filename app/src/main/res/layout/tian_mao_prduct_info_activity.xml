@@ -8,6 +8,7 @@
     tools:context=".activity.ProductInfoActivity">
 
     <EditText
+        android:layout_marginTop="20dp"
         android:id="@+id/etTianMaoSearch"
         android:layout_width="0dp"
         android:layout_height="40dp"

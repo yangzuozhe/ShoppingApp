@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:background="@drawable/call_receive_bg"
     tools:context=".activity.HomeActivity">
 
     <FrameLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/flHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"

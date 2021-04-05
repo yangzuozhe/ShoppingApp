@@ -1,5 +1,6 @@
 package com.example.shoppingapp.adapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.bean.TianmaoBannerBean;
 import com.example.shoppingapp.bean.TianmaoGuideBean;
 import com.example.shoppingapp.viewholder.TianmaoBannerViewHolder;
@@ -115,7 +117,7 @@ public class TianMaoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void initTianmaoGuide(RecyclerView recyclerView, List<TianmaoGuideBean> beanList) {
         final GridLayoutManager manager = new GridLayoutManager(recyclerView.getContext(), 4);
-        final TianMaoGuideAdapter adapter = new TianMaoGuideAdapter(beanList);
+        final TianMaoGuideAdapter adapter = new TianMaoGuideAdapter(beanList, IntentKey.TIAN_MAO_KEY);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(manager);
     }
