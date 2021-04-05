@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.shoppingapp.R;
@@ -16,6 +17,7 @@ import com.example.shoppingapp.base.BaseActivity;
 import com.example.shoppingapp.base.Constance;
 import com.example.shoppingapp.base.IntentKey;
 import com.example.shoppingapp.base.StringUtils;
+import com.example.shoppingapp.dialog.LoadingDialog;
 import com.example.shoppingapp.fragment.TianMaoProductInfoFragment;
 import com.example.shoppingapp.fragment.WhatMaiProductInfoFragment;
 
@@ -64,15 +66,14 @@ public class ProductInfoActivity extends BaseActivity {
             }
             return false;
         });
-        if (StringUtils.isEmploy(mLabelInfo)){
+        if (StringUtils.isEmploy(mLabelInfo)) {
             showSoftInputFromWindow(mEtTianMaoSearch);
-        }else {
+        } else {
             mEtTianMaoSearch.setText(mLabelInfo);
             mEtTianMaoSearch.setSelection(mLabelInfo.length());
             mClGliderBg.setFocusable(true);
             mClGliderBg.setFocusableInTouchMode(true);
             mClGliderBg.requestFocus();
-
         }
     }
 
@@ -99,15 +100,30 @@ public class ProductInfoActivity extends BaseActivity {
         }
     }
 
+    Fragment mShoppingFragment;
+
     private void replaceProductInfoFragment(String searchText) {
         if (StringUtils.isEmploy(searchText)) {
             return;
         }
-        if (mIntentKey.equals(IntentKey.TIAN_MAO_KEY)) {
-            replaceFragment(TianMaoProductInfoFragment.newInstance(searchText), R.id.flProductionView, false);
-        } else if (mIntentKey.equals(IntentKey.WHAT_MAI_KEY)) {
-            replaceFragment(WhatMaiProductInfoFragment.newInstance(searchText), R.id.flProductionView, false);
+        final LoadingDialog dialog = new LoadingDialog(this);
+        dialog.show();
+        if (mShoppingFragment == null) {
+            if (mIntentKey.equals(IntentKey.TIAN_MAO_KEY)) {
+                mShoppingFragment = TianMaoProductInfoFragment.newInstance(searchText, dialog);
+                replaceFragment(mShoppingFragment, R.id.flProductionView, false);
+            } else if (mIntentKey.equals(IntentKey.WHAT_MAI_KEY)) {
+                mShoppingFragment = WhatMaiProductInfoFragment.newInstance(searchText, dialog);
+                replaceFragment(mShoppingFragment, R.id.flProductionView, false);
+            }
+        } else {
+            if (mShoppingFragment instanceof TianMaoProductInfoFragment) {
+                    ((TianMaoProductInfoFragment) mShoppingFragment).requestTaoBaoSearch(searchText,dialog);
+            } else if (mShoppingFragment instanceof WhatMaiProductInfoFragment) {
+                    ((WhatMaiProductInfoFragment) mShoppingFragment).requestWhatMaiInfo(searchText,dialog);
+            }
         }
+
     }
 
 }
