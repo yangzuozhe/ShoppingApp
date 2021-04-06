@@ -15,6 +15,7 @@ import com.example.shoppingapp.R;
 public class LoadingDialog extends Dialog {
     ImageView mIvLoading;
     ObjectAnimator mLoadingAnimator;
+
     public LoadingDialog(Context context) {
         super(context, R.style.loadingDialog);
     }
@@ -24,12 +25,14 @@ public class LoadingDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_loading);
         mIvLoading = findViewById(R.id.ivLoading);
+        setCancelable(false);
+        setCanceledOnTouchOutside(false);
         initAnimator();
     }
 
-    private void initAnimator(){
-        if (mIvLoading != null){
-            mLoadingAnimator = ObjectAnimator.ofFloat(mIvLoading, View.ROTATION,0,360);
+    private void initAnimator() {
+        if (mIvLoading != null) {
+            mLoadingAnimator = ObjectAnimator.ofFloat(mIvLoading, View.ROTATION, 0, 360);
             mLoadingAnimator.setDuration(500);
             mLoadingAnimator.setInterpolator(new LinearInterpolator());
             mLoadingAnimator.setRepeatCount(ValueAnimator.INFINITE);
@@ -40,7 +43,7 @@ public class LoadingDialog extends Dialog {
     @Override
     public void dismiss() {
         super.dismiss();
-        if (mLoadingAnimator != null){
+        if (mLoadingAnimator != null) {
             mLoadingAnimator.cancel();
         }
     }
