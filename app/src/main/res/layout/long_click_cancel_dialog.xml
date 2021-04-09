@@ -16,23 +16,22 @@
 
     <Button
         android:id="@+id/btnOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/tvDetermine"
         android:layout_alignStart="@+id/tvDetermine"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
-        android:background="@android:color/holo_green_dark"
+        android:background="@drawable/btn_ic"
         android:text="确定" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/tvDetermine"
         android:layout_marginTop="50dp"
         android:layout_alignEnd="@+id/tvDetermine"
-
-        android:background="@android:color/holo_green_dark"
+        android:background="@drawable/btn_ic"
         android:text="取消" />
 </RelativeLayout>
