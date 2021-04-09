@@ -1,5 +1,6 @@
 package com.example.shoppingapp.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -9,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.base.BaseActivity;
 import com.example.shoppingapp.base.Constance;
+import com.example.shoppingapp.dialog.GuideDialog;
 import com.example.shoppingapp.fragment.HomeFragment;
 import com.example.shoppingapp.fragment.ShoppingCarFragment;
 import com.example.shoppingapp.widget.BottomButton;
@@ -36,6 +38,7 @@ public class HomeActivity extends BaseActivity {
         ButterKnife.bind(this);
         initBottomButton();
         addHome();
+        initGuideDialog();
     }
 
     /**
@@ -70,6 +73,17 @@ public class HomeActivity extends BaseActivity {
             }
 
         });
+    }
+
+    private void initGuideDialog(){
+        SharedPreferences preferences = getSharedPreferences("guide_dialog",MODE_PRIVATE);
+        if (preferences != null){
+            if (!preferences.getBoolean("isShowGuide",false)){
+                GuideDialog dialog = new GuideDialog(this);
+                dialog.show();
+            }
+        }
+
     }
 
 
