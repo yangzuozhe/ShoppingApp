@@ -8,6 +8,7 @@
     android:paddingEnd="10dp">
 
     <RelativeLayout
+        android:id="@+id/rlItemView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/tian_mao_search_bg">

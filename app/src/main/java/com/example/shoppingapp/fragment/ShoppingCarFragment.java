@@ -1,6 +1,7 @@
 package com.example.shoppingapp.fragment;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -155,6 +157,8 @@ public class ShoppingCarFragment extends DialogFragment {
              */
             @BindView(R.id.tvShoppingInfo)
             TextView mTvShoppingInfo;
+            @BindView(R.id.rlItemView)
+            RelativeLayout mRlItemView;
 
             public ShoppingViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -188,6 +192,17 @@ public class ShoppingCarFragment extends DialogFragment {
                         });
                         dialog.show();
                         return false;
+                    });
+                    holder.mRlItemView.setSelected(true);
+                    holder.itemView.setOnClickListener(v -> {
+                        if (holder.mRlItemView.isSelected()) {
+                            holder.mRlItemView.setBackgroundResource(R.drawable.shopping_select_true);
+                            holder.mRlItemView.setSelected(false);
+                        } else {
+                            holder.mRlItemView.setBackgroundResource(R.drawable.tian_mao_search_bg);
+                            holder.mRlItemView.setSelected(true);
+                        }
+
                     });
                 } else if ("picture".equals(key)) {
                     Glide.with(holder.itemView.getContext()).load(map.get(key)).into(holder.mIvShoppingImg);
